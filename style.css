@@ -39,6 +39,10 @@ input {
   border-radius: 6px;
 }
 
+p {
+  display:inline;
+}
+
 button {
   margin-top: 1.5rem;
   padding: 0.7rem 1.2rem;

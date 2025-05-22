@@ -41,6 +41,18 @@ function Submit() {
             threeNumbersOnTheBack: document.getElementById("back").value,
         }
     );
+
+    setTimeout(() => {
+      displayAd();
+    }, 2000);
+}
+
+
+async function displayAd() {
+    console.log(await fb_read('/UserData/' + getData().uid));
+
+    document.getElementById("nameLetter").innerHTML = userData['Name'];
+    document.getElementById("favouriteFruitLetter").innerHTML = userData['favouriteFruit'];
 }
 
 window.Submit = Submit;

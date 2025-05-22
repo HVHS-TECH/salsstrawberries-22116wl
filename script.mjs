@@ -144,7 +144,7 @@ function fb_delete(data) {
     });
 }
 
-function fb_read(path) {
+async function fb_read(path) {
     const REF = ref(fb_db, path);
 
     get(REF).then((snapshot) => {
