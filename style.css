@@ -53,6 +53,11 @@ button:hover {
   background-color: #e64a74;
 }
 
+button:disabled {
+  background-color: #ffacc5;
+}
+
+
 #statusMessage {
   margin-top: 1rem;
   font-style: italic;

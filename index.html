@@ -18,8 +18,8 @@
     <button onclick="fb_authenticate()">Login with Google</button>
 
     <form id="fruitForm">
-      <label for="name">Your Name:</label>
-      <input type="text" id="name" name="name" required />
+      <p id="name">Not logged in</p>
+      <p class="gap"><br></p>
 
       <label for="address">Home Address 😈😈</label>
       <input type="address" id="address" name="address" required />
@@ -42,9 +42,11 @@
       <!-- add more fields here -->
     </form>
 
-    <button onclick="Submit()">Submit</button>
+    <p class="gap"><br></p>
 
-    <p id="statusMessage"></p>
+    <button id='SubmitButton' disabled onclick="Submit()">Submit</button>
+
+    <p id="statusMessage">Please log in</p>
   </div>
 </body>
 </html>

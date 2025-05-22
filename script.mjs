@@ -65,6 +65,10 @@ function fb_authenticate() {
     signInWithPopup(AUTH, PROVIDER).then((result) => {
         console.log('success');
         console.log(result);
+
+        document.getElementById('name').innerHTML = "Your Name: " + AUTH.currentUser.displayName;
+        document.getElementById('SubmitButton').disabled = false;
+        document.getElementById('statusMessage').innerHTML = "";
     })
     
     .catch((error) => {
@@ -93,6 +97,7 @@ function fb_logout() {
 
     signOut(AUTH).then(() => {
         console.log('successful logout');
+        document.getElementById('statusMessage').innerHTML = "Please log in"
     })
 
     .catch((error) => {
@@ -109,7 +114,9 @@ function fb_write(path, data) {
 
     set(REF, data).then(() => {
         console.log('written successfully!');
+        document.getElementById('statusMessage').innerHTML = "Data Saved Successfully!";
     }).catch((error) => {
+        document.getElementById('statusMessage').innerHTML = "Error, please email me";
         console.log('error');
         console.log(error);
     });
@@ -213,11 +220,11 @@ function fb_readSorted(path, sortkey, number) {
 }
 
 
-function getUID() {
-    return getAuth().currentUser.uid;
+function getData() {
+    return getAuth().currentUser;
 }
 
-export { fb_initialise, fb_authenticate, fb_authChanged, fb_logout, fb_write, fb_read, fb_update, fb_readSorted, fb_delete, getUID };
+export { fb_initialise, fb_authenticate, fb_authChanged, fb_logout, fb_write, fb_read, fb_update, fb_readSorted, fb_delete, getData };
 
 /*************************************************************/
 // END OF CODE

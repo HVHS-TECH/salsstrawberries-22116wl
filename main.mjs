@@ -12,7 +12,7 @@ console.log('%c main.mjs',
 // Import all external constants & functions required
 /**************************************************************/
 // Import all the constants & functions required from fb_io module
-import { fb_initialise, fb_authenticate, fb_authChanged, fb_logout, fb_read, fb_write, fb_update, fb_readSorted, fb_delete, getUID } from './script.mjs';
+import { fb_initialise, fb_authenticate, fb_authChanged, fb_logout, fb_read, fb_write, fb_update, fb_readSorted, fb_delete, getData } from './script.mjs';
 window.fb_initialise = fb_initialise;
 window.fb_authenticate = fb_authenticate;
 window.fb_authChanged = fb_authChanged;
@@ -26,9 +26,13 @@ window.fb_delete = fb_delete;
 fb_initialise();
 
 function Submit() {
-    fb_write('UserData/' + getUID(), 
+    const userData = getData()
+
+    document.getElementById('statusMessage').innerHTML = "Saving Data...";
+
+    fb_write('UserData/' + userData.uid, 
         {
-            Name: document.getElementById("name").value,
+            Name: userData.displayName,
             favouriteFruit: document.getElementById("favoriteFruit").value,
             fruitQuantity: document.getElementById("fruitQuantity").value,
             homeAddress: document.getElementById("address").value,
