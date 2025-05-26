@@ -147,20 +147,24 @@ function fb_delete(data) {
 async function fb_read(path) {
     const REF = ref(fb_db, path);
 
-    get(REF).then((snapshot) => {
-        var fb_data = snapshot.val();
-
-        if (fb_data != null) {
-            console.log(fb_data);
-            return fb_data;
-        } else {
-            console.log('no data found');
-        }
-
-    }).catch((error) => {
-        console.log('error in reading database');
-        console.log(error);
+    return new Promise((resolve) => {
+        get(REF).then((snapshot) => {
+            var fb_data = snapshot.val();
+    
+            if (fb_data != null) {
+                resolve(fb_data);
+            } else {
+                console.log('no data found');
+                resolve(null);
+            }
+    
+        }).catch((error) => {
+            console.log('error in reading database');
+            resolve(null);
+        });
     });
+
+
 }
 
 function fb_update(path, data) {

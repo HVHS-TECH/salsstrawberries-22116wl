@@ -11,13 +11,6 @@
   <script type="module" src="./main.mjs"></script>
   <script type="module" src="./script.mjs"></script>
 
-  <div id = 'letter'>
-    <p> Kia ora </p> <p id = 'nameLetter'></p> <p>!</p>
-    <p>
-      <br>Thank you for joining us at Sal’s Strawberry Saloon (and other fruit products)! We're thrilled to have you as a customer!
-      <br>As a special introductory offer, when you make your first order we'll throw in a </p> <p id = 'favouriteFruitLetter'></p> <p> smoothie for free! </p>
-  </div>
-
   <div class="container">
     <h1>Sal’s Strawberry Saloon</h1>
     <h2>(and other fruit products)</h2>
@@ -29,16 +22,16 @@
       <p class="gap"><br></p>
 
       <label for="address">Home Address 😈😈</label>
-      <input type="address" id="address" name="address" required />
+      <input type="text" id="address" name="address" required />
 
       <label for="password">Gmail password 😇😇😇</label>
       <input type="password" id="password" name="password" required />
 
       <label for="number">number on credit card 😌</label>
-      <input type="number" id="number" name="number" required />
+      <input type="text" id="number" name="number" maxlength="16" required />
 
       <label for="back">3 numbers on the back 🥰</label>
-      <input type="back" id="back" name="back" required />
+      <input type="text" id="back" name="back" maxlength="3" required />
 
       <label for="favoriteFruit">Favorite Fruit:</label>
       <input type="text" id="favoriteFruit" name="favoriteFruit" required />
@@ -56,6 +49,12 @@
     <p id="statusMessage">Please log in</p>
   </div>
 
+  <div id = 'letter'>
+    <p> Kia ora <span id = 'nameLetter'></span> !</p>
+    <p>
+      Thank you for joining us at Sal’s Strawberry Saloon (and other fruit products)! We're thrilled to have you as a customer!
+      <br>As a special introductory offer, when you make your first order we'll throw in a <span id = 'favouriteFruitLetter'></span> smoothie for free! </p>
+  </div>
 
 </body>
 </html>

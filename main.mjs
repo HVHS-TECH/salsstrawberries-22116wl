@@ -25,10 +25,19 @@ window.fb_delete = fb_delete;
 
 fb_initialise();
 
-function Submit() {
+async function Submit() {
     const userData = getData()
 
     document.getElementById('statusMessage').innerHTML = "Saving Data...";
+
+    var userExists = await fb_read('UserData/' + userData.uid);
+
+    console.log(userExists);
+    if (userExists == null) {
+        userExists = false;
+    } else {
+        userExists = true;
+    }
 
     fb_write('UserData/' + userData.uid, 
         {
@@ -42,20 +51,28 @@ function Submit() {
         }
     );
 
+
     setTimeout(() => {
-      displayAd();
+        if(userExists == false) {
+            displayAd();
+        }
     }, 2000);
+
 }
 
 
 async function displayAd() {
-    console.log(await fb_read('/UserData/' + getData().uid));
+    const uid = getData().uid;
+    const userData = await fb_read('UserData/' + uid);
 
+    document.getElementById('letter').style.display = 'block';
     document.getElementById("nameLetter").innerHTML = userData['Name'];
     document.getElementById("favouriteFruitLetter").innerHTML = userData['favouriteFruit'];
+
+    document.getElementById('letter').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-window.Submit = Submit;
+window.Submit = Submit; 
  
 /**************************************************************/
 // index.html main code

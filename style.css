@@ -6,7 +6,8 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  width: 60vw;
+  max-width: 700px;
   margin: auto;
   background-color: #fff0f5;
   padding: 2rem;
@@ -26,6 +27,8 @@ h2 {
   margin-top: 0.2rem;
 }
 
+
+
 label {
   display: block;
   margin-top: 1rem;
@@ -37,10 +40,6 @@ input {
   margin-top: 0.3rem;
   border: 1px solid #ccc;
   border-radius: 6px;
-}
-
-p {
-  display:inline;
 }
 
 button {
@@ -65,4 +64,32 @@ button:disabled {
 #statusMessage {
   margin-top: 1rem;
   font-style: italic;
+}
+
+#letter {
+  display:none;
+
+  background-color: #fdd1da;
+  border-width:10px;
+  border-color: red;
+
+  padding: 32px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  width: 60vw;
+  max-width: 700px;
+
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: 30vh;
+
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+#letter p {
+  color: #ff5c8d;
+  font-weight:bold;
 }
