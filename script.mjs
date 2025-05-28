@@ -167,6 +167,7 @@ async function fb_read(path) {
 }
 
 function fb_update(path, data) {
+    console.log("UPDATED IT WORKS");
     const REF = ref(fb_db, path);
 
     runTransaction(REF, (currentValue) => {
