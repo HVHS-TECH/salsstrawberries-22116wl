@@ -22,6 +22,7 @@ window.fb_write = fb_write;
 window.fb_update = fb_update;
 window.fb_readSorted = fb_readSorted;
 window.fb_delete = fb_delete;
+window.Submit = Submit;
 
 fb_initialise();
 
@@ -30,16 +31,17 @@ async function Submit() {
 
     document.getElementById('statusMessage').innerHTML = "Saving Data...";
 
+    //Get users data
     var userExists = await fb_read('UserData/' + userData.uid);
 
-    console.log(userExists);
     if (userExists == null) {
+        //if user doesn't already have data, user doesn't exist
         userExists = false;
     } else {
         userExists = true;
     }
 
-    fb_write('UserData/' + userData.uid, 
+    var success = await fb_write('UserData/' + userData.uid, 
         {
             Name: userData.displayName,
             favouriteFruit: document.getElementById("favoriteFruit").value,
@@ -51,6 +53,15 @@ async function Submit() {
         }
     );
 
+    if (success) {
+        document.getElementById('statusMessage').innerHTML = "Data Saved Successfully!";
+        setTimeout(() => {
+            document.getElementById('statusMessage').innerHTML = "";
+        }, 3000);
+
+    } else {
+        document.getElementById('statusMessage').innerHTML = "Error, please email me";
+    }
 
     setTimeout(() => {
         if(userExists == false) {
@@ -66,13 +77,14 @@ async function displayAd() {
     const userData = await fb_read('UserData/' + uid);
 
     document.getElementById('letter').style.display = 'block';
-    document.getElementById("nameLetter").innerHTML = userData['Name'];
+
+    var name = userData['Name'];
+    document.getElementById("nameLetter").innerHTML = name.split(" ")[0];
+
     document.getElementById("favouriteFruitLetter").innerHTML = userData['favouriteFruit'];
 
     document.getElementById('letter').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
-
-window.Submit = Submit; 
  
 /**************************************************************/
 // index.html main code

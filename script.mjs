@@ -112,13 +112,15 @@ function fb_write(path, data) {
 
     console.log(REF);
 
-    set(REF, data).then(() => {
-        console.log('written successfully!');
-        document.getElementById('statusMessage').innerHTML = "Data Saved Successfully!";
-    }).catch((error) => {
-        document.getElementById('statusMessage').innerHTML = "Error, please email me";
-        console.log('error');
-        console.log(error);
+    return new Promise((resolve) => {
+        set(REF, data).then(() => {
+            console.log('written successfully!');
+            resolve(true);
+        }).catch((error) => {
+            console.log('error');
+            console.log(error);
+            resolve(false);
+        });
     });
 }
 
