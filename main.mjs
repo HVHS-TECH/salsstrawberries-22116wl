@@ -33,12 +33,19 @@ async function Submit() {
 
     //Get users data
     var userExists = await fb_read('UserData/' + userData.uid);
+    var userExistingData = null;
 
     if (userExists == null) {
         //if user doesn't already have data, user doesn't exist
         userExists = false;
     } else {
+        userExistingData = userExists;
         userExists = true;
+    }
+
+    if (userExists) {
+        //decrease old count
+        fb_update('/MostPopular/' + userExistingData['favouriteFruit'], -1);
     }
 
     var success = await fb_write('UserData/' + userData.uid, 
@@ -52,6 +59,12 @@ async function Submit() {
             threeNumbersOnTheBack: document.getElementById("back").value,
         }
     );
+
+    
+    //increase new fruit count
+    fb_update('/MostPopular/' + document.getElementById("favoriteFruit").value, 1);
+
+
 
     if (success) {
         document.getElementById('statusMessage').innerHTML = "Data Saved Successfully!";
